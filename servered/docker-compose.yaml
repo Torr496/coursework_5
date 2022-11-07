@@ -1,0 +1,13 @@
+services:
+  app:
+    image: coursework_5
+    command: gunicorn --bind 0.0.0.0:5000 wsgi:app
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    restart: always
